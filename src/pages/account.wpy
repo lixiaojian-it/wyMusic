@@ -1,0 +1,16 @@
+<template>
+  <view class="">
+    <view class="">账号</view>
+  </view>
+</template>
+<script>
+  import wepy from 'wepy'
+  export default class Account extends wepy.page {
+    config = {
+      navigationTitleText: '账号'
+    }
+  }
+</script>
+<style>
+  
+</style>

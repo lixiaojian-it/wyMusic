@@ -1,0 +1,86 @@
+<template>
+    <view class="">组件</view>
+  <swiper 
+  interval="0" 
+  duration="500"
+  @change="swiperChange"
+  >
+  <block wx:for="{{imgUrls}}">
+   <swiper-item>
+      <image src="{{item}}" class="slide-image" width="355" height="150"/>
+    </swiper-item>
+    </block>
+  </swiper>
+
+  <view class="guidance-nav">
+    <view class="guidance-nav-item">
+      <view class="icon">
+        <view class="iconfont icon-fm"></view>
+      </view>
+      <view class="icon-text">私人FM</view>
+    </view>
+     <view class="guidance-nav-item">
+      <view class="icon">
+        <view class="iconfont icon-rili"></view>
+      </view>
+      <view class="icon-text">每日推荐</view>
+    </view>
+     <view class="guidance-nav-item">
+      <view class="icon">
+        <view class="iconfont icon-gedan"></view>
+      </view>
+      <view class="icon-text">歌单</view>
+    </view>
+     <view class="guidance-nav-item">
+      <view class="icon">
+        <view class="iconfont icon-paihangbang"></view>
+      </view>
+      <view class="icon-text">排行榜</view>
+    </view>
+    
+  </view>
+</template>
+<script>
+  import wepy from 'wepy'
+  export default class Recommend extends wepy.page {
+    data = {
+      imgUrls: [
+        'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
+        'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
+        'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
+      ]
+    }
+  }
+</script>
+<style lang="less" scoped>
+
+.guidance-nav {
+    display: flex;
+    justify-content: space-around;
+    padding: 30rpx 0;
+    background: #fff;
+    .guidance-nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .icon {
+            height: 100rpx;
+            width: 100rpx;
+            background: #e3463f;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            .iconfont {
+                font-size: 24px;
+            }
+        }
+        .icon-text {
+            color: #333;
+            font-size: 14px;
+        }
+    }
+}
+
+</style>

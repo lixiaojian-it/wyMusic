@@ -1,0 +1,229 @@
+<template>
+  <view class="index-page">
+    <view class="head-search">
+      <text class="">占</text>
+      <view class="search-icon">
+        <text class="iconfont icon-sousuo"></text>
+        <text class="placeholder-text">大家都在搜什么</text>
+      </view>
+    </view>
+   <view class="tab-nav">
+    <block wx:for="{{tab}}" wx:key="index"> 
+      <view @tap="switchNav" data-current="{{index}}" id="nav{{index}}" class="tab-nav-item" :class="{active : current == index}">{{item.text}}</view>
+    </block>
+  </view> 
+
+
+
+  <!-- <view class="section__title">vertical scroll</view> -->
+  
+  <!-- <scroll-view 
+    scroll-x="true"
+    bindscrolltoupper="upper" 
+    bindscrolltolower="lower" 
+    bindscroll="scroll" 
+    scroll-into-view="{{navIndex}}" 
+    scroll-top="{{scrollTop}}">
+    <view class="tab-nav">
+      <block wx:for="{{tab}}" wx:key="index"> 
+        <view @tap="switchNav" data-current="{{index}}" id="nav{{index}}" class="tab-nav-item" :class="{active : current == index}">{{item.text}}</view>
+      </block>
+    </view>  
+  </scroll-view> -->
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+  <swiper 
+  interval="0" 
+  duration="500"
+  @change="swiperChange"
+  skip-hidden-item-layout
+  >
+    <swiper-item wx:if="{{swiperIndex == 0}}" >
+      <recommend></recommend>
+    </swiper-item>
+    <swiper-item wx:if="{{swiperIndex == 1}}">
+      <broadcasting></broadcasting>
+    </swiper-item>
+</swiper>
+  <!-- <view class="btn-area">
+    <button size="mini" @tap="tap">click me to scroll into view </button>
+    <button size="mini" @tap="tapMove">click me to scroll</button>
+  </view>
+</view>
+<view class="section section_gap">
+  <view class="section__title">horizontal scroll</view>
+  <scroll-view class="scroll-view_H" scroll-x style="width: 100%">
+    <view id="green" class="scroll-view-item_H bc_green"></view>
+    <view id="red"  class="scroll-view-item_H bc_red"></view>
+    <view id="yellow" class="scroll-view-item_H bc_yellow"></view>
+    <view id="blue" class="scroll-view-item_H bc_blue"></view>
+  </scroll-view>
+</view> -->
+  </view>
+</template>
+<script>
+import wepy from 'wepy'
+import recommend from '../components/recommend'
+import broadcasting from '../components/broadcasting'
+export default class Index extends wepy.page {
+  config = {
+    navigationBarTitleText: '发现'
+  };
+  components = {
+    recommend: recommend,
+    broadcasting: broadcasting
+  }
+  data = {
+    indicatorDots: false,
+    autoplay: false,
+    interval: 5000,
+    duration: 1000,
+    imgUrls: [
+      'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
+      'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
+      'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
+    ],
+
+    swiperIndex: 1,
+
+    tab: [{
+      text: '个性推荐'
+    }, {
+      text: '主播电台'
+    }],
+    navIndex: 'nav0',
+    current: 0,
+    order: ['red', 'yellow', 'blue', 'green', 'red'],
+    toView: 'red',
+    scrollTop: 100,
+    navData: [
+      {
+        text: '首页'
+      },
+      {
+        text: '健康'
+      }
+    ]
+  };
+  methods = {
+    swiperChange(e) {
+      console.log('滑动', e)
+      this.swiperIndex = e.detail.current
+    },
+    switchNav(e) {
+      console.log('e', e)
+      this.current = e.target.dataset.current
+    },
+    upper(e) {
+      console.log('upper')
+      console.log(e)
+    },
+    lower(e) {
+      console.log('lower')
+      console.log(e)
+    },
+    scroll(e) {
+      console.log('scroll')
+      console.log(e)
+    },
+    tap(e) {
+      console.log('tap')
+      for (var i = 0; i < this.order.length; ++i) {
+        if (this.order[i] === this.toView) {
+          this.toView = this.order[i + 1]
+          break
+        }
+      }
+    },
+    tapMove(e) {
+      console.log('move')
+      this.setData({
+        scrollTop: this.data.scrollTop + 10
+      })
+    },
+    changeIndicatorDots: function(e) {
+      this.setData({
+        indicatorDots: !this.data.indicatorDots
+      })
+    },
+    changeAutoplay: function(e) {
+      this.setData({
+        autoplay: !this.data.autoplay
+      })
+    },
+    intervalChange: function(e) {
+      this.setData({
+        interval: e.detail.value
+      })
+    },
+    durationChange: function(e) {
+      this.setData({
+        duration: e.detail.value
+      })
+    }
+  };
+}
+</script>
+<style lang="less" scoped>
+@import '../assets/css/public.less';
+.father-swiper {
+  height: 100%;
+}
+.index-page {
+  .head-search {
+    height: 90rpx;
+    width: 100%;
+    background: red;
+    display: flex; // justify-content:
+    align-items: center;
+    padding: 0rpx 30rpx;
+    .search-icon {
+      height: 60rpx;
+      width: 600rpx;
+      background: #e0645c;
+      border-radius: 30rpx;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-left: 40rpx;
+      .placeholder-text {
+        color: #999;
+        font-size: 14px;
+      }
+      .icon-sousuo {
+        color: #999;
+        vertical-align: bottom;
+        margin-right: 5rpx;
+      }
+    }
+  }
+  .tab-nav {
+    height: 90rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 100rpx;
+    color: #fff;
+    font-size: 20px;
+    background: #dc4238;
+    .tab-nav-item {
+      border-bottom: 6rpx solid transparent;
+    }
+    .active {
+      border-bottom: 6rpx solid #cdcbcc;
+      border-radius: 10rpx;
+    }
+  }
+}
+</style>
