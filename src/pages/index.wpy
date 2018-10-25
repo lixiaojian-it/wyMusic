@@ -14,62 +14,14 @@
   </view> 
 
 
-
-  <!-- <view class="section__title">vertical scroll</view> -->
-  
-  <!-- <scroll-view 
-    scroll-x="true"
-    bindscrolltoupper="upper" 
-    bindscrolltolower="lower" 
-    bindscroll="scroll" 
-    scroll-into-view="{{navIndex}}" 
-    scroll-top="{{scrollTop}}">
-    <view class="tab-nav">
-      <block wx:for="{{tab}}" wx:key="index"> 
-        <view @tap="switchNav" data-current="{{index}}" id="nav{{index}}" class="tab-nav-item" :class="{active : current == index}">{{item.text}}</view>
-      </block>
-    </view>  
-  </scroll-view> -->
-  
-  
-  
-
-
-
-
-
-
-
-
-
-
-  <swiper 
-  interval="0" 
-  duration="500"
-  @change="swiperChange"
-  skip-hidden-item-layout
-  >
-    <swiper-item wx:if="{{swiperIndex == 0}}" >
-      <recommend></recommend>
-    </swiper-item>
-    <swiper-item wx:if="{{swiperIndex == 1}}">
-      <broadcasting></broadcasting>
-    </swiper-item>
-</swiper>
-  <!-- <view class="btn-area">
-    <button size="mini" @tap="tap">click me to scroll into view </button>
-    <button size="mini" @tap="tapMove">click me to scroll</button>
-  </view>
-</view>
-<view class="section section_gap">
-  <view class="section__title">horizontal scroll</view>
-  <scroll-view class="scroll-view_H" scroll-x style="width: 100%">
-    <view id="green" class="scroll-view-item_H bc_green"></view>
-    <view id="red"  class="scroll-view-item_H bc_red"></view>
-    <view id="yellow" class="scroll-view-item_H bc_yellow"></view>
-    <view id="blue" class="scroll-view-item_H bc_blue"></view>
-  </scroll-view>
-</view> -->
+        <recommend ></recommend>
+    <!-- <swiper  @change="swiperChange" current="{{current}}">
+      <swiper-item>
+      </swiper-item>
+      <swiper-item>
+        <broadcasting></broadcasting>
+      </swiper-item>
+    </swiper> -->
   </view>
 </template>
 <script>
@@ -85,40 +37,20 @@ export default class Index extends wepy.page {
     broadcasting: broadcasting
   }
   data = {
-    indicatorDots: false,
-    autoplay: false,
-    interval: 5000,
-    duration: 1000,
-    imgUrls: [
-      'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-      'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
-      'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
-    ],
-
-    swiperIndex: 1,
+    current: 0,
+    swiperIndex: 0,
 
     tab: [{
       text: '个性推荐'
     }, {
       text: '主播电台'
     }],
-    navIndex: 'nav0',
-    current: 0,
-    order: ['red', 'yellow', 'blue', 'green', 'red'],
-    toView: 'red',
-    scrollTop: 100,
-    navData: [
-      {
-        text: '首页'
-      },
-      {
-        text: '健康'
-      }
-    ]
+    navIndex: 'nav0'
   };
   methods = {
     swiperChange(e) {
       console.log('滑动', e)
+      // this.current = e.detail.current
       this.swiperIndex = e.detail.current
     },
     switchNav(e) {
@@ -184,7 +116,7 @@ export default class Index extends wepy.page {
   .head-search {
     height: 90rpx;
     width: 100%;
-    background: red;
+    background: #d73d33;
     display: flex; // justify-content:
     align-items: center;
     padding: 0rpx 30rpx;
@@ -216,7 +148,7 @@ export default class Index extends wepy.page {
     padding: 0 100rpx;
     color: #fff;
     font-size: 20px;
-    background: #dc4238;
+    background: #d73d33;
     .tab-nav-item {
       border-bottom: 6rpx solid transparent;
     }

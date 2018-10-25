@@ -1,88 +1,178 @@
 <template>
-  <view class="">推荐</view>
-  <swiper 
-  interval="0" 
-  duration="500"
-  @change="swiperChange"
-  >
-  <block wx:for="{{imgUrls}}">
-   <swiper-item>
-      <image src="{{item}}" class="slide-image" width="355" height="150"/>
-    </swiper-item>
-    </block>
-  </swiper>
+  <view class="re-c">
 
-  <view class="guidance-nav">
+    <!-- <swiper 
+    interval="0" 
+    duration="500"
+    @change="swiperChange"
+    >
+    <block wx:for="{{imgUrls}}">
+    <swiper-item>
+        <image src="{{item}}" class="slide-image" width="355" height="150"/>
+      </swiper-item>
+      </block>
+    </swiper> -->
+    <view class="guidance-nav">
+      <view class="guidance-nav-item">
+        <view class="icon">
+          <view class="iconfont icon-fm"></view>
+        </view>
+        <view class="icon-text">私人FM</view>
+      </view>
+      <view class="guidance-nav-item">
+        <view class="icon">
+          <view class="iconfont icon-rili"></view>
+        </view>
+        <view class="icon-text">每日推荐</view>
+      </view>
+      <view class="guidance-nav-item">
+        <view class="icon">
+          <view class="iconfont icon-gedan"></view>
+        </view>
+        <view class="icon-text">歌单</view>
+      </view>
+      <view class="guidance-nav-item">
+        <view class="icon">
+          <view class="iconfont icon-paihangbang"></view>
+        </view>
+        <view class="icon-text">排行榜</view>
+      </view>
+    </view>
+
+    <!-- 推荐的歌单 -->
+    <view class="song-sheet">
+      <view class="title">
+        <view class="text">推荐歌单</view>
+        <text class="iconfont icon-jiantou"></text>
+      </view>
+      <view class="list">
+        <view class="item">
+          <view class="inner">
+            <view class="img">
+              <image src="../assets/img/acg.jpg"></image>
+            </view>
+            <view class="prompt">愿你黑裙齐身 高贵又冷艳</view>
+          </view>
+        </view>
+        <view class="item">
+          <view class="inner">
+            <view class="img">
+              <image src="../assets/img/acg.jpg"></image>
+            </view>
+            <view class="prompt">愿你黑裙齐身 高贵又冷艳</view>
+          </view>
+        </view>
+        <view class="item">
+          <view class="inner">
+            <view class="img">
+              <image src="../assets/img/acg.jpg"></image>
+            </view>
+            <view class="prompt">愿你黑裙齐身 高贵又冷艳</view>
+          </view>
+        </view>
+        <view class="item">
+          <view class="inner">
+            <view class="img">
+              <image src="../assets/img/acg.jpg"></image>
+            </view>
+            <view class="prompt">愿你黑裙齐身 高贵又冷艳</view>
+          </view>
+        </view>
+       
+      </view>
+    </view>
     
-    
-    <view class="guidance-nav-item">
-      <view class="icon">
-        <view class="iconfont icon-fm"></view>
-      </view>
-      <view class="icon-text">私人FM</view>
-    </view>
-     <view class="guidance-nav-item">
-      <view class="icon">
-        <view class="iconfont icon-rili"></view>
-      </view>
-      <view class="icon-text">每日推荐</view>
-    </view>
-     <view class="guidance-nav-item">
-      <view class="icon">
-        <view class="iconfont icon-gedan"></view>
-      </view>
-      <view class="icon-text">歌单</view>
-    </view>
-     <view class="guidance-nav-item">
-      <view class="icon">
-        <view class="iconfont icon-paihangbang"></view>
-      </view>
-      <view class="icon-text">排行榜</view>
-    </view>
+
+
     
   </view>
 </template>
 <script>
-  import wepy from 'wepy'
-  export default class Recommend extends wepy.page {
-    data = {
-      imgUrls: [
-        'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-        'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
-        'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
-      ]
-    }
-  }
+import wepy from 'wepy';
+export default class Recommend extends wepy.component {
+  data = {
+    imgUrls: [
+      'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
+      'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
+      'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
+    ]
+  };
+}
 </script>
 <style lang="less" scoped>
-
 .guidance-nav {
+  display: flex;
+  justify-content: space-around;
+  padding: 30rpx 0;
+  background: #fff;
+  border-bottom: 1px solid #e1e2e4;
+  .guidance-nav-item {
     display: flex;
-    justify-content: space-around;
-    padding: 30rpx 0;
-    background: #fff;
-    .guidance-nav-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        .icon {
-            height: 100rpx;
-            width: 100rpx;
-            background: #e3463f;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #fff;
-            .iconfont {
-                font-size: 24px;
-            }
-        }
-        .icon-text {
-            color: #333;
-            font-size: 14px;
-        }
+    flex-direction: column;
+    align-items: center;
+    .icon {
+      height: 100rpx;
+      width: 100rpx;
+      background: #e3463f;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      .iconfont {
+        font-size: 24px;
+      }
     }
+    .icon-text {
+      color: #333;
+      font-size: 14px;
+    }
+  }
 }
-
+.song-sheet {
+  padding: 8rpx 8rpx 0rpx;
+  .title {
+    display: flex;
+    height: 90rpx;
+    align-items: center;
+    padding: 30prx 0rpx;
+    margin-left: 7rpx;
+    .text {
+      font-size: 20px;
+      font-weight: bold;
+      margin-right: 10rpx;
+    }
+    .icon-jiantou {
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
+    }
+  }
+  .list {
+    padding: 0rpx 4rpx;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    .item {
+      width: 33%;
+      margin-bottom: 40rpx;
+      .inner {
+        padding: 0 3rpx;
+      }
+      .img {
+        height: 240rpx;
+        width: 240rpx;
+        border-radius: 10rpx;
+        image {
+          height: 100%;
+          width: 100%;
+        }
+      }
+      .prompt {
+        font-size: 13px;
+        color: #333;
+      }
+    }
+  }
+}
 </style>

@@ -1,6 +1,5 @@
 <template>
-    <view class="">组件</view>
-  <swiper 
+  <!-- <swiper 
   interval="0" 
   duration="500"
   @change="swiperChange"
@@ -10,7 +9,7 @@
       <image src="{{item}}" class="slide-image" width="355" height="150"/>
     </swiper-item>
     </block>
-  </swiper>
+  </swiper> -->
 
   <view class="guidance-nav">
     <view class="guidance-nav-item">
@@ -42,7 +41,7 @@
 </template>
 <script>
   import wepy from 'wepy'
-  export default class Recommend extends wepy.page {
+  export default class Recommend extends wepy.component {
     data = {
       imgUrls: [
         'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
