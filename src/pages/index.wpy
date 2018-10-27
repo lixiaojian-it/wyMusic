@@ -12,8 +12,6 @@
       <view @tap="switchNav" data-current="{{index}}" id="nav{{index}}" class="tab-nav-item" :class="{active : current == index}">{{item.text}}</view>
     </block>
   </view> 
-
-
         <recommend ></recommend>
     <!-- <swiper  @change="swiperChange" current="{{current}}">
       <swiper-item>
@@ -27,6 +25,7 @@
 <script>
 import wepy from 'wepy'
 import recommend from '../components/recommend'
+import { ajax } from '../assets/js/ajax.js' 
 import broadcasting from '../components/broadcasting'
 export default class Index extends wepy.page {
   config = {
@@ -104,7 +103,19 @@ export default class Index extends wepy.page {
         duration: e.detail.value
       })
     }
-  };
+  }
+
+  onLoad() {
+    ajax('/search','GET',{
+        keywords: '野子'
+    }).then((res)=> {
+      console.log('res',res);
+      
+    }).catch(err=> {
+      console.log('err',err);
+
+    })
+  }
 }
 </script>
 <style lang="less" scoped>
